@@ -1,0 +1,318 @@
+/* =========================================================================
+   WEBSITE PORTFOLIO CÁ NHÂN — style.css
+   HTML5 + CSS3 thuần — không framework, không thư viện JavaScript
+   Kỹ thuật: CSS Variables, Flexbox, CSS Grid, Responsive (Mobile-first)
+   ========================================================================= */
+
+/* ---------- 1. CSS VARIABLES ---------- */
+:root {
+  /* Màu bắt buộc: Primary / Secondary / Background / Text */
+  --color-primary: #14213D;
+  --color-primary-dark: #0A1526;
+  --color-secondary: #E24A34;
+  --color-secondary-dark: #B33420;
+  --color-bg: #F1F3F6;
+  --color-text: #1B2333;
+
+  /* Màu bổ trợ */
+  --color-text-muted: #5B6478;
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #E7EAF0;
+  --color-border: #D7DCE5;
+  --color-success: #2F8F5B;
+  --color-success-bg: #E4F3EA;
+  --color-warning: #C98A1A;
+  --color-warning-bg: #F8ECD8;
+
+  /* Font-size */
+  --font-display: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: 1.125rem;
+  --fs-lg: 1.5rem;
+  --fs-xl: 2rem;
+  --fs-2xl: 2.75rem;
+  --fs-3xl: 3.25rem;
+
+  /* Border-radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  /* Khoảng cách dùng chung */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  --shadow-card: 0 1px 3px rgba(20,33,61,.10), 0 6px 16px rgba(20,33,61,.08);
+  --container-width: 1140px;
+}
+
+/* ---------- 2. RESET & BASE ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; margin: 0; padding: 0; }
+button, input { font-family: inherit; font-size: inherit; color: inherit; }
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height: 1.2; margin: 0; }
+p { margin: 0; }
+svg { flex-shrink: 0; }
+
+:focus-visible { outline: 2px solid var(--color-secondary); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+/* ---------- 3. LAYOUT DÙNG CHUNG ---------- */
+.container { width: 100%; max-width: var(--container-width); margin-inline: auto; padding-inline: var(--space-4); }
+section { padding-block: var(--space-7); }
+.section-head { margin-bottom: var(--space-6); max-width: 640px; }
+.section-head h2 { font-size: var(--fs-xl); margin-bottom: var(--space-2); }
+.section-head p { color: var(--color-text-muted); }
+
+/* ---------- 4. BUTTON ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  padding: var(--space-3) var(--space-5); border-radius: var(--radius-sm);
+  font-weight: 600; font-size: var(--fs-sm); border: 1px solid transparent; cursor: pointer;
+  transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+}
+.btn--primary { background: var(--color-secondary-dark); color: #fff; }
+.btn--primary:hover { background: var(--color-secondary); }
+.btn--outline { background: transparent; border-color: var(--color-border); color: var(--color-text); }
+.btn--outline:hover { border-color: var(--color-primary); }
+.btn--block { width: 100%; }
+
+/* ---------- 5. CHIP / THẺ NHÃN ---------- */
+.chip {
+  display: inline-flex; align-items: center; padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--color-border); border-radius: var(--radius-sm);
+  font-size: var(--fs-xs); font-family: var(--font-mono); color: var(--color-text-muted);
+  background: var(--color-surface);
+}
+.chip--accent { border-color: var(--color-secondary); color: var(--color-secondary-dark); }
+
+/* ---------- 6. NAVBAR (Flexbox) — mobile trước, mở rộng ở tablet/desktop ---------- */
+.navbar { position: sticky; top: 0; z-index: 50; background: var(--color-bg); border-bottom: 1px solid var(--color-border); }
+.navbar__inner { display: flex; align-items: center; justify-content: space-between; padding-block: var(--space-4); position: relative; }
+.navbar__brand { font-family: var(--font-display); font-weight: 700; font-size: var(--fs-md); }
+
+.menu-toggle { display: none; }
+.menu-toggle__label {
+  display: flex; flex-direction: column; justify-content: center; gap: 5px;
+  width: 32px; height: 32px; cursor: pointer;
+}
+.menu-toggle__label span, .menu-toggle__label span::before, .menu-toggle__label span::after {
+  content: ''; display: block; width: 22px; height: 2px; background: var(--color-text);
+}
+.menu-toggle__label span { position: relative; }
+.menu-toggle__label span::before { position: absolute; top: -7px; }
+.menu-toggle__label span::after { position: absolute; top: 7px; }
+
+.navbar__links {
+  display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-4);
+  position: absolute; top: 100%; left: 0; right: 0;
+  background: var(--color-bg); border-bottom: 1px solid var(--color-border);
+  padding: var(--space-4); max-height: 0; overflow: hidden; transition: max-height .3s ease;
+}
+.menu-toggle:checked ~ .navbar__links { max-height: 320px; }
+.navbar__links a:hover { color: var(--color-secondary-dark); }
+.navbar__login { padding: var(--space-2) var(--space-4); border: 1px solid var(--color-primary); border-radius: var(--radius-sm); font-weight: 600; }
+
+/* ---------- 7. HERO ---------- */
+.hero { padding-block: var(--space-8) var(--space-7); }
+.hero__grid { display: grid; gap: var(--space-6); }
+.hero__eyebrow { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--color-secondary-dark); margin-bottom: var(--space-3); }
+.hero__name { font-size: var(--fs-2xl); margin-bottom: var(--space-3); }
+.hero__role { font-size: var(--fs-md); color: var(--color-text-muted); margin-bottom: var(--space-5); max-width: 46ch; }
+.hero__actions { display: flex; gap: var(--space-4); flex-wrap: wrap; }
+
+.spec-card { position: relative; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-5); margin: 0; }
+.spec-card::before, .spec-card::after {
+  content: ''; position: absolute; width: 14px; height: 14px; border: 2px solid var(--color-secondary);
+}
+.spec-card::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+.spec-card::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+.spec-row { display: flex; justify-content: space-between; gap: var(--space-4); padding-block: var(--space-3); border-bottom: 1px solid var(--color-border); font-size: var(--fs-sm); }
+.spec-row:last-child { border-bottom: none; }
+.spec-row dt { color: var(--color-text-muted); }
+.spec-row dd { margin: 0; font-family: var(--font-mono); text-align: right; }
+
+/* ---------- 8. GIỚI THIỆU / HỌC VẤN (Flexbox list) ---------- */
+.about__text { max-width: 65ch; color: var(--color-text-muted); margin-bottom: var(--space-6); }
+.edu-list { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--color-border); margin: 0; }
+.edu-list__item { display: flex; justify-content: space-between; gap: var(--space-4); padding-block: var(--space-3); border-bottom: 1px solid var(--color-border); margin: 0; }
+.edu-list__label { color: var(--color-text-muted); font-size: var(--fs-sm); }
+.edu-list__value { font-weight: 600; text-align: right; }
+
+/* ---------- 9. KỸ NĂNG (Flexbox wrap) ---------- */
+.skills-group { margin-bottom: var(--space-5); }
+.skills-group__title { font-size: var(--fs-sm); color: var(--color-text-muted); margin-bottom: var(--space-3); }
+.skills-group__list { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+
+/* ---------- 10. DỰ ÁN (CSS Grid) ---------- */
+.projects-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-5); }
+.project-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); }
+.project-card__icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); background: var(--color-surface-alt); color: var(--color-primary); }
+.project-card__icon svg { width: 20px; height: 20px; }
+.project-card h3 { font-size: var(--fs-md); }
+.project-card p { color: var(--color-text-muted); font-size: var(--fs-sm); }
+.project-card__stack { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: auto; padding-top: var(--space-3); }
+.project-card__link { font-weight: 600; font-size: var(--fs-sm); color: var(--color-secondary-dark); align-self: flex-start; }
+
+/* ---------- 11. LIÊN HỆ (Flexbox wrap) ---------- */
+.contact-list { display: flex; flex-wrap: wrap; gap: var(--space-4); }
+.contact-list a { display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-3) var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-size: var(--fs-sm); }
+.contact-list a:hover { border-color: var(--color-secondary); }
+
+/* ---------- 12. FOOTER ---------- */
+.site-footer { border-top: 1px solid var(--color-border); padding-block: var(--space-5); }
+.site-footer__inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-3); font-size: var(--fs-xs); color: var(--color-text-muted); }
+
+/* ---------- 13. TRANG ĐĂNG NHẬP (Flexbox để căn giữa) ---------- */
+.login-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: var(--space-7); padding: var(--space-5); }
+.login-note { max-width: 320px; }
+.login-note__label { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--color-secondary-dark); margin-bottom: var(--space-3); }
+.login-note h2 { font-size: var(--fs-lg); margin-bottom: var(--space-3); }
+.login-note p { color: var(--color-text-muted); font-size: var(--fs-sm); }
+.login-card { width: 100%; max-width: 400px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-7) var(--space-6); box-shadow: var(--shadow-card); }
+.login-card h1 { font-size: var(--fs-xl); margin-bottom: var(--space-2); }
+.login-card__subtitle { color: var(--color-text-muted); font-size: var(--fs-sm); margin-bottom: var(--space-6); }
+.form-field { margin-bottom: var(--space-5); }
+.form-field label { display: block; font-size: var(--fs-sm); font-weight: 600; margin-bottom: var(--space-2); }
+.form-field input { width: 100%; padding: var(--space-3) var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-bg); }
+.form-field input:focus { border-color: var(--color-secondary); outline: none; background: var(--color-surface); }
+.form-row { display: flex; align-items: center; justify-content: space-between; font-size: var(--fs-sm); margin-bottom: var(--space-6); flex-wrap: wrap; gap: var(--space-2); }
+.form-row label { display: flex; align-items: center; gap: var(--space-2); font-weight: 400; }
+.form-row a { color: var(--color-secondary-dark); font-weight: 600; }
+.login-card__footer { margin-top: var(--space-6); text-align: center; font-size: var(--fs-sm); color: var(--color-text-muted); }
+.login-card__footer a { color: var(--color-primary); font-weight: 600; }
+
+/* ---------- 14. ADMIN — BỐ CỤC TỔNG THỂ (CSS Grid) ---------- */
+.admin-layout {
+  display: grid; min-height: 100vh;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas: "topbar" "sidebar" "main";
+}
+.admin-sidebar { grid-area: sidebar; }
+.admin-topbar { grid-area: topbar; }
+.admin-main { grid-area: main; }
+
+/* ---------- 15. ADMIN — SIDEBAR ---------- */
+.admin-sidebar { background: var(--color-primary); color: #fff; }
+.admin-sidebar__brand { display: none; }
+.admin-nav { display: flex; overflow-x: auto; padding: var(--space-2); gap: var(--space-1); margin: 0; }
+.admin-nav__item {
+  display: flex; flex-direction: column; align-items: center; gap: var(--space-1);
+  padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm);
+  color: rgba(255,255,255,.7); font-size: var(--fs-xs); white-space: nowrap; flex-shrink: 0;
+}
+.admin-nav__item svg { width: 20px; height: 20px; }
+.admin-nav__item.is-active, .admin-nav__item:hover { background: rgba(255,255,255,.08); color: #fff; }
+.admin-nav__item.is-active { box-shadow: inset 0 -3px 0 var(--color-secondary); }
+.admin-nav__divider { display: none; }
+
+/* ---------- 16. ADMIN — TOOLBAR (Flexbox) ---------- */
+.admin-topbar { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-4) var(--space-5); background: var(--color-surface); border-bottom: 1px solid var(--color-border); }
+.admin-topbar h1 { font-size: var(--fs-lg); }
+.admin-topbar__right { display: flex; align-items: center; gap: var(--space-4); }
+.admin-search { display: none; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-bg); color: var(--color-text-muted); flex: 1; max-width: 320px; }
+.admin-search svg { width: 16px; height: 16px; }
+.admin-search input { border: none; background: transparent; width: 100%; }
+.admin-search input:focus { outline: none; }
+.admin-user { display: flex; align-items: center; gap: var(--space-2); font-size: var(--fs-sm); font-weight: 600; }
+.admin-user__avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--color-secondary-dark); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: var(--fs-xs); }
+.admin-user span:last-child { display: none; }
+
+/* ---------- 17. ADMIN — NỘI DUNG CHÍNH ---------- */
+.admin-main { padding: var(--space-5); }
+.admin-section { margin-bottom: var(--space-7); }
+.admin-section__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); margin-bottom: var(--space-4); flex-wrap: wrap; }
+.admin-section__head h2 { font-size: var(--fs-md); }
+
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-7); }
+.stat-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-4); }
+.stat-card__value { font-family: var(--font-mono); font-size: var(--fs-xl); font-weight: 600; color: var(--color-primary); }
+.stat-card__label { font-size: var(--fs-sm); color: var(--color-text-muted); margin-top: var(--space-1); }
+
+/* ---------- 18. ADMIN — BẢNG DỮ LIỆU ---------- */
+.table-wrap { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; }
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th, .data-table td { text-align: left; padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--color-border); font-size: var(--fs-sm); }
+.data-table th { background: var(--color-surface-alt); font-family: var(--font-mono); font-weight: 500; color: var(--color-text-muted); }
+.data-table tbody tr:last-child td { border-bottom: none; }
+.data-table tbody tr:hover { background: var(--color-bg); }
+.status-pill { display: inline-flex; padding: var(--space-1) var(--space-3); border-radius: var(--radius-sm); font-size: var(--fs-xs); font-weight: 600; }
+.status-pill--progress { background: var(--color-warning-bg); color: var(--color-warning); }
+.status-pill--done { background: var(--color-success-bg); color: var(--color-success); }
+.row-actions { display: flex; gap: var(--space-3); }
+.row-actions a { font-weight: 600; font-size: var(--fs-sm); }
+.row-actions a:first-child { color: var(--color-primary); }
+.row-actions a:last-child { color: var(--color-secondary-dark); }
+
+/* Mobile (<768px): bảng dữ liệu chuyển thành danh sách dạng thẻ cho dễ đọc */
+@media (max-width: 767px) {
+  .data-table thead { display: none; }
+  .data-table, .data-table tbody, .data-table tr, .data-table td { display: block; width: 100%; }
+  .data-table tr { border-bottom: 1px solid var(--color-border); padding: var(--space-3) var(--space-4); }
+  .data-table tbody tr:last-child { border-bottom: none; }
+  .data-table td { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); padding: var(--space-2) 0; border-bottom: none; text-align: right; }
+  .data-table td::before { content: attr(data-label); font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--color-text-muted); text-align: left; }
+}
+
+/* =========================================================================
+   RESPONSIVE — TABLET (≥768px)
+   ========================================================================= */
+@media (min-width: 768px) {
+  .container { padding-inline: var(--space-6); }
+
+  .menu-toggle__label { display: none; }
+  .navbar__links { position: static; flex-direction: row; align-items: center; gap: var(--space-7); max-height: none; overflow: visible; padding: 0; border-bottom: none; background: transparent; }
+
+  .hero__name { font-size: var(--fs-2xl); }
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Admin: sidebar dạng cột hẹp, chỉ icon + nhãn nhỏ */
+  .admin-layout { grid-template-columns: 84px 1fr; grid-template-rows: auto 1fr; grid-template-areas: "sidebar topbar" "sidebar main"; }
+  .admin-sidebar { display: flex; flex-direction: column; }
+  .admin-sidebar__brand { display: flex; align-items: center; justify-content: center; text-align: center; padding: var(--space-4) var(--space-2); font-family: var(--font-display); font-weight: 700; font-size: var(--fs-sm); border-bottom: 1px solid rgba(255,255,255,.12); }
+  .admin-nav { flex-direction: column; overflow: visible; padding: var(--space-3) var(--space-2); flex: 1; }
+  .admin-nav__item.is-active { box-shadow: inset 3px 0 0 var(--color-secondary); }
+  .admin-nav__divider { display: block; height: 1px; background: rgba(255,255,255,.12); margin: var(--space-3) var(--space-2); }
+  .admin-search { display: flex; }
+}
+
+/* =========================================================================
+   RESPONSIVE — DESKTOP (≥1024px)
+   ========================================================================= */
+@media (min-width: 1024px) {
+  .hero__grid { grid-template-columns: 1.2fr .8fr; align-items: center; }
+  .hero__name { font-size: var(--fs-3xl); }
+
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-7); align-items: start; }
+
+  /* Admin: sidebar đầy đủ, icon nằm cùng hàng với nhãn chữ */
+  .admin-layout { grid-template-columns: 240px 1fr; }
+  .admin-nav__item { flex-direction: row; justify-content: flex-start; gap: var(--space-3); padding: var(--space-3) var(--space-4); }
+  .admin-user span:last-child { display: inline; }
+}
