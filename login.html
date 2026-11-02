@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đăng nhập — Lê Trần Vũ Bảo Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="login-page">
+  <div class="login-card">
+    <h1>Đăng nhập quản trị</h1>
+    <p class="login-card__subtitle">Đăng nhập để quản lý nội dung trang chủ.</p>
+
+    <form action="admin.html" method="get">
+      <div class="form-field">
+        <label for="username">Tên đăng nhập hoặc Email</label>
+        <input type="text" id="username" name="username" placeholder="ten@vidu.com" required>
+      </div>
+      <div class="form-field">
+        <label for="password">Mật khẩu</label>
+        <input type="password" id="password" name="password" placeholder="••••••••" required>
+      </div>
+      <div class="form-row">
+        <label><input type="checkbox" name="remember"> Ghi nhớ đăng nhập</label>
+        <a href="#">Quên mật khẩu?</a>
+      </div>
+      <button type="submit" class="btn btn--primary btn--block">Đăng nhập</button>
+    </form>
+
+    <p class="login-card__footer">Chưa phải quản trị viên? <a href="index.html">Về trang chủ</a></p>
+  </div>
+  <aside class="login-note">
+    <p class="login-note__label">Ghi chú</p>
+    <h1></h1>
+    <p> Trang này chỉ minh họa giao diện bằng HTML/CSS thuần, chưa kết nối cơ sở dữ liệu. Nhập thông tin bất kỳ và bấm "Đăng nhập" để xem trang quản trị.</p>
+  </aside>
+</div>
+
+</body>
+</html>

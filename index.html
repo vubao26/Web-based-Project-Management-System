@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lê Trần Vũ Bảo — Portfolio Cá nhân</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="container navbar__inner">
+    <a href="index.html" class="navbar__brand">Lê Trần Vũ Bảo</a>
+
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <label for="menu-toggle" class="menu-toggle__label" aria-label="Mở menu điều hướng"><span></span></label>
+
+    <nav class="navbar__links">
+      <a href="#gioi-thieu">Giới thiệu</a>
+      <a href="#ky-nang">Kỹ năng</a>
+      <a href="#du-an">Dự án</a>
+      <a href="#lien-he">Liên hệ</a>
+      <a href="login.html" class="navbar__login">Đăng nhập</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container hero__grid">
+      <div>
+        <p class="hero__eyebrow">Sinh viên Công nghệ Thông tin</p>
+        <h1 class="hero__name">Lê Trần Vũ Bảo</h1>
+        <p class="hero__role">Lập trình Web &amp; Mobile — thích biến những bài toán thực tế thành sản phẩm chạy được, từ giao diện web đến ứng dụng Android và cấu hình hạ tầng mạng.</p>
+        <div class="hero__actions">
+          <a href="#du-an" class="btn btn--primary">Xem dự án</a>
+          <a href="#lien-he" class="btn btn--outline">Liên hệ với tôi</a>
+        </div>
+      </div>
+
+      <dl class="spec-card">
+        <div class="spec-row"><dt>Vai trò</dt><dd>Web &amp; Mobile Dev</dd></div>
+        <div class="spec-row"><dt>Trường</dt><dd>Trường Đại Học Giao Thông Vận Tải-UTH</dd></div>
+        <div class="spec-row"><dt>Khóa</dt><dd>2024</dd></div>
+        <div class="spec-row"><dt>Trạng thái</dt><dd>Sẵn sàng thực tập</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="gioi-thieu">
+    <div class="container about-grid">
+      <div class="section-head">
+        <h2>Giới thiệu</h2>
+        <p>Một vài dòng về hành trình học tập của mình.</p>
+      </div>
+      <div>
+        <p class="about__text">Mình là sinh viên ngành Công nghệ Thông tin, tập trung vào lập trình web và phát triển ứng dụng di động. Mình thích tự tay hoàn thiện một sản phẩm trọn vẹn — từ giao diện, dữ liệu cho đến vận hành — như các đồ án bên dưới.</p>
+        <dl class="edu-list">
+          <div class="edu-list__item"><dt class="edu-list__label">Trường</dt><dd class="edu-list__value">Trường Đại Học Giao Thông Vận Tải-UTH</dd></div>
+          <div class="edu-list__item"><dt class="edu-list__label">Chuyên ngành</dt><dd class="edu-list__value">Công nghệ Thông tin</dd></div>
+          <div class="edu-list__item"><dt class="edu-list__label">Khóa</dt><dd class="edu-list__value">2024</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="ky-nang">
+    <div class="container">
+      <div class="section-head">
+        <h2>Kỹ năng</h2>
+        <p>Những công nghệ mình dùng thường xuyên trong các đồ án gần đây.</p>
+      </div>
+
+      <div class="skills-group">
+        <p class="skills-group__title">Ngôn ngữ &amp; Framework</p>
+        <div class="skills-group__list">
+          <span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">Java</span>
+        </div>
+      </div>
+
+      <div class="skills-group">
+        <p class="skills-group__title">Cơ sở dữ liệu &amp; Hạ tầng</p>
+        <div class="skills-group__list">
+          <span class="chip">Room Database</span><span class="chip">MySQL</span><span class="chip">Cisco Packet Tracer</span>
+        </div>
+      </div>
+
+      <div class="skills-group">
+        <p class="skills-group__title">Công cụ</p>
+        <div class="skills-group__list">
+          <span class="chip">Git &amp; GitHub</span><span class="chip">VS Code</span><span class="chip">Android Studio</span><span class="chip">XAMPP</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="du-an">
+    <div class="container">
+      <div class="section-head">
+        <h2>Dự án nổi bật</h2>
+        <p>Một số đồ án tiêu biểu trong quá trình học tập.</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <article class="project-card">
+          <div class="project-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+          </div>
+          <span class="chip chip--accent">Ứng dụng di động</span>
+          <h3>Recipe &amp; Meal Planner</h3>
+          <p>Ứng dụng Android quản lý công thức nấu ăn và lên kế hoạch thực đơn theo tuần, đầy đủ chức năng thêm/sửa/xóa. Đồ án nhóm 2 thành viên.</p>
+          <div class="project-card__stack"><span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">Room</span></div>
+          <a href="https://github.com/vubao26/Recipe-and-Meal-Planner-03" class="project-card__link">Xem trên GitHub</a>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg>
+          </div>
+          <span class="chip chip--accent">Ứng dụng Web</span>
+          <h3>Quản lý Căn hộ</h3>
+          <p>Dự án nhóm xây dựng hệ thống quản lý căn hộ/chung cư; phụ trách module Admin Dashboard &amp; Báo cáo.</p>
+          <div class="project-card__stack"><span class="chip">HTML/CSS</span><span class="chip">MySQL</span><span class="chip">Dashboard</span></div>
+          <a href="https://github.com/Kat-code-2412/Gr3-QuanLyCanHo-LapTrinhWeb" class="project-card__link">Xem trên GitHub</a>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2.2"/><circle cx="19" cy="6" r="2.2"/><circle cx="12" cy="18" r="2.2"/><line x1="6.8" y1="7.2" x2="10.5" y2="16.2"/><line x1="17.2" y1="7.2" x2="13.5" y2="16.2"/><line x1="7.2" y1="6" x2="16.8" y2="6"/></svg>
+          </div>
+          <span class="chip chip--accent">Hạ tầng mạng</span>
+          <h3>Cấu hình định tuyến RIP</h3>
+          <p>Bài lab cá nhân cấu hình giao thức RIP trên 4 router để mạng hội tụ hoàn chỉnh, mô phỏng trên Cisco Packet Tracer.</p>
+          <div class="project-card__stack"><span class="chip">Cisco Packet Tracer</span><span class="chip">RIP</span><span class="chip">Networking</span></div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7l9 5 9-5-9-5Z"/><path d="M3 12l9 5 9-5"/><path d="M3 17l9 5 9-5"/></svg>
+          </div>
+          <span class="chip chip--accent">Thiết kế Web</span>
+          <h3>Website Portfolio Cá nhân</h3>
+          <p>Chính là website bạn đang xem — thuần HTML5 &amp; CSS3, không dùng framework, tối ưu hiển thị trên Desktop, Tablet và Mobile.</p>
+          <div class="project-card__stack"><span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">CSS Grid</span></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="lien-he">
+    <div class="container">
+      <div class="section-head">
+        <h2>Liên hệ</h2>
+        <p>Đang tìm kiếm cơ hội thực tập/việc làm — rất vui nếu được kết nối.</p>
+      </div>
+      <div class="contact-list">
+        <a href="mailto:baoltv8670@ut.edu.vn">baoltv8670@ut.edu.vn</a>
+        <a href="tel:0911776076">0911776076</a>
+        <a href="https: //github.com/vubao26">vubao26</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <span>© 2026 Lê Trần Vũ Bảo. Bảo lưu mọi quyền.</span>
+    <a href="login.html">Đăng nhập quản trị</a>
+  </div>
+</footer>
+
+</body>
+</html>
